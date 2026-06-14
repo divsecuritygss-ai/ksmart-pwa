@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>K-Smart Enterprise</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b1329">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0b1329;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GANTI 'URL_DEPLOYMENT_GAS_ANDA' dengan URL Exec dari Google Apps Script -->
+    <iframe 
+        src="URL_DEPLOYMENT_GAS_ANDA" 
+        allow="camera; clipboard-write; geolocation;"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-top-navigation-by-user-activation">
+    </iframe>
+
+    <script>
+        // Registrasi Service Worker untuk syarat PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker terdaftar!', reg))
+                    .catch(err => console.log('Service Worker gagal:', err));
+            });
+        }
+    </script>
+</body>
+</html>
